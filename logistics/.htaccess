@@ -1,10 +1,10 @@
 RewriteEngine On
-RewriteRule ^shirts/$ /logistics/shirts/shirts.php
+
+RewriteRule ^logistics/$ /logistics/login/
 RewriteRule ^shirts/([0-9]+)/$ /logistics/shirts/shirt.php?id=$1
 RewriteRule ^receipt.php$ /logistics/receipt/ [R=301]
 RewriteRule ^adduser.php$ /logistics/adduser/ [R=301]
+RewriteRule ^addpage.php$ /logistics/addpage/ [R=301]
+RewriteRule ^login.php$ /logistics/login/ [R=301]
 RewriteRule ^shirts.php$ /logistics/shirts/ [R=301]
-RewriteRule ^(shirts/[0-9]+)$ /logistics/$1/ [R=301]
 
-RewriteCond %{QUERY_STRING} ^id=([0-9]+)$
-RewriteRule ^shirt.php$ /logistics/shirts/%1/? [R=301]

@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <html>
 <head>
 	<title><?php echo $pageTitle; ?></title>
@@ -13,8 +15,9 @@
 			<h1 class="branding-title"><a href="<?php echo BASE_URL; ?>">Sistema de logística</a></h1>
 
 			<ul class="nav">
+				<li><?php if ($section != "sign_in") { echo "Hi " . $_SESSION['user'] . " !"; } ?></li>
 				<li>
-					<?php if ($section != "sign_in") { echo '<a href=' . BASE_URL . 'logout.php>Logout</a>';} ?>
+					<?php if ($section != "sign_in") { echo '<a href=' . BASE_URL . 'login/logout.php>Logout</a>';} ?>
 				</li> 
 			</ul>
 

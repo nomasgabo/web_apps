@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once("inc/config.php");
-require_once("inc/users.php");
+require_once("../inc/config.php");
+require_once("../inc/models.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = md5(trim($_POST["password"]));
     
     if ($user == "" OR $password == "") {
-        header("Location: " . BASE_URL . "?err=empty");
+        header("Location: " . BASE_URL . "/login/index.php?err=empty");
         exit;
     }
 
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         foreach( $_POST as $value ){
             if( stripos($value,'Content-Type:') !== FALSE ){
-                $header("Location: " . BASE_URL . "?err=prob");
+                $header("Location: " . BASE_URL . "/login/index.php?err=prob");
                 exit;    
             }
         }
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } else {
 
-    	header("Location: " . BASE_URL . "?err=auth");
+    	header("Location: " . BASE_URL . "/login/index.php?err=auth");
         exit;
     } 
 }
