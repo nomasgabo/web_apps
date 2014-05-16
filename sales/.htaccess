@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteRule ^sales/$ /sales/login/
+RewriteRule ^adduser.php$ /sales/admin/adduser/ [R=301]
+RewriteRule ^addpage.php$ /sales/admin/addpage/ [R=301]
+RewriteRule ^addpermission.php$ /sales/admin/addpermission/ [R=301]
+RewriteRule ^login.php$ /sales/login/ [R=301]
+RewriteRule ^shirts.php$ /sales/shirts/ [R=301]
+
