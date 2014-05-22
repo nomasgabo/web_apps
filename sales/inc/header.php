@@ -4,8 +4,8 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-require_once("../../inc/config.php");
-require_once(ROOT_PATH . "inc/models.php");;
+require_once('config.php');
+require_once('models.php');;
 
 $menu = get_menu_list($_SESSION['user']);
 
@@ -14,10 +14,14 @@ $menu = get_menu_list($_SESSION['user']);
 <head>
 	<title><?php echo $pageTitle; ?></title>
 	<link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css" type="text/css">
-
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700" type="text/css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 </head>
 <body>
@@ -28,8 +32,6 @@ $menu = get_menu_list($_SESSION['user']);
 			<h1 class="branding-title"><a href="<?php echo BASE_URL; ?>">Sistema de logística</a></h1>
 
 			<ul class="navi">
-				
-				<!-- <li><?php if ($section != "sign_in") { echo "Hi " . $_SESSION['user'] . " !"; } ?></li> -->
 				 
 				<?php 
 
@@ -72,7 +74,7 @@ $menu = get_menu_list($_SESSION['user']);
 
 	 $(document).ready(
 	  function () {
-	    $('.nav li').hover(
+	    $('.navi li').hover(
 	      function () { //appearing on hover
 	        $('ul', this).fadeIn();
 	      },
@@ -83,5 +85,6 @@ $menu = get_menu_list($_SESSION['user']);
 	  }
 	);
 
-
   </script>
+
+  <div id="content">

@@ -27,6 +27,33 @@ function verify_user($user) {
         
 }
 
+function verify_payment($email) {
+
+    require(ROOT_PATH . "inc/database.php");
+
+    try {
+        $results = $db -> prepare("SELECT email FROM tbl_merchants WHERE email = ?");
+        $results -> bindparam(1,$email);
+        $results -> execute();
+    } catch(Exception $e){
+        echo "Data could not be retrieved  from the database.";
+        exit;
+    }
+
+    $exist = $results -> fetch(PDO::FETCH_ASSOC);
+
+    if($exist === false) {
+
+        return false;
+
+    } else {
+
+        return true; 
+        
+    }
+        
+}
+
 function verify_page($page) {
 
     require(ROOT_PATH . "inc/database.php");
@@ -34,6 +61,33 @@ function verify_page($page) {
     try {
         $results = $db -> prepare("SELECT page_id FROM tbl_pages WHERE page_id = ?");
         $results -> bindparam(1,$page);
+        $results -> execute();
+    } catch(Exception $e){
+        echo "Data could not be retrieved  from the database.";
+        exit;
+    }
+
+    $exist = $results -> fetch(PDO::FETCH_ASSOC);
+
+    if($exist === false) {
+
+        return false;
+
+    } else {
+
+        return true; 
+        
+    }
+        
+}
+
+function verify_batch($batch) {
+
+    require(ROOT_PATH . "inc/database.php");
+
+    try {
+        $results = $db -> prepare("SELECT batch_id FROM tbl_batches WHERE batch_id = ?");
+        $results -> bindparam(1,$batch);
         $results -> execute();
     } catch(Exception $e){
         echo "Data could not be retrieved  from the database.";
@@ -108,6 +162,7 @@ function get_users_all(){
     try {
         $results = $db -> prepare("SELECT user_id, name FROM tbl_users");
         $results -> execute();
+        
     } catch(Exception $e){
         echo "Data could not be retrieved  from the database.";
         exit;
@@ -148,6 +203,7 @@ function get_granted_list($user){
         $results = $db -> prepare("SELECT p.page_id, p.page_name FROM tbl_pages p, tbl_permissions pr WHERE p.page_id = pr.page_id AND pr.user_id = ?");
         $results -> bindparam(1,$user);
         $results -> execute();
+
     } catch(Exception $e){
         echo "Data could not be retrieved  from the database.";
         exit;
@@ -177,7 +233,7 @@ function get_menu_list($user){
         
 
         try {
-            $result = $db -> prepare("SELECT p.page_name, p.page_path FROM tbl_pages p, tbl_permissions pr WHERE p.page_id = pr.page_id AND pr.user_id = ? AND p.father_id = ?");
+            $result = $db -> prepare("SELECT p.page_name, p.page_path FROM tbl_pages p, tbl_permissions pr WHERE p.page_id = pr.page_id AND pr.user_id = ? AND p.father_id = ? ORDER BY p.page_name");
             $result -> bindparam(1,$user);
             $result -> bindparam(2,$menu[$x]['page_id']);
             $result -> execute();

@@ -499,12 +499,15 @@ table {
     border-spacing: 0;
 }
 
-html {overflow-y: scroll; overflow-x: hidden;}
-body {font-family: 'Oswald', sans-serif; background:#f0eeed; color: #676767;}
+html {overflow-y: scroll; overflow-x: hidden; height: 100%; margin: 0; padding:0;}
+body {font-family: 'Oswald', sans-serif; background:#f0eeed; color: #676767; }
 
 .wrapper {width: 980px; margin: auto;}
 .wrapperpermisos {width: 520px; margin: 0 auto;}
-
+.wrapperpage {
+    width: 100%;
+    margin: 20% 0 ;
+}
 
 
 .permisos {width: 220px; background: #f4f3f2; float:left; border: 4px solid #D8D8D8;}
@@ -537,7 +540,7 @@ body {font-family: 'Oswald', sans-serif; background:#f0eeed; color: #676767;}
 
 .fileUpload {
     position: relative;
-    line-height: 20px
+    line-height: 20px;
     width:20px;
   
 }
@@ -576,14 +579,14 @@ body {font-family: 'Oswald', sans-serif; background:#f0eeed; color: #676767;}
     background:url(../img/clip-sin-fondo-100.png) 0 14px no-repeat;
     padding: 15px 0;}
 .header .navi {float: right; margin: 0px; padding: 0px; list-style: none; top: 50; right: 0; margin: 0; position: relative; left: 15px; z-index: 99999999; }
-.header .navi li {margin: 0; position: relative; width: 120px; float: left;}
+.header .navi li {margin: 0; position: relative; width: 150px; float: left;}
 .header .navi li a {
     color: #FF8655;
     text-decoration: none;
     display: block;
     line-height: 0px;
     padding: 2px 2px;
-    width: 100px;
+    width: 145px;
     text-transform: uppercase;
 
 }
@@ -622,14 +625,22 @@ body {font-family: 'Oswald', sans-serif; background:#f0eeed; color: #676767;}
 }
 
 .section.page:after {content:"";display:block;visibility:hidden;clear:both;}
-.section.page {padding: 15px 0; background: white;}
+.section.page {
+    padding: 15px 0; 
+    background: white; 
+    width: 100%;
+    top: 120px;
+    bottom: 120px;
+
+
+}
 .section.page h1 {
     
     font-size: 24px; 
     text-align: center;
     text-transform: uppercase;
     line-height: 1.6;
-    font-weight: normal;    
+    font-weight: normal;
 }
 .section.page .shirt-details h1 {
     text-align: left;
@@ -800,13 +811,15 @@ form input[type="submit"] {
 }
 
 .footer {
+    width: 100%;
     background: #f0eeed;
     padding: 42px 0;
     font-size: 12px;
     color: #a5a5a5;
     font-family: Helvetica, Arial, sans-serif;
     border-top: 4px solid #D8D8D8;
-    height: 100px;
+    border-bottom: 4px solid #D8D8D8;
+    height: 120px;
  
 }
 .footer ul {margin: 0; padding: 0; }

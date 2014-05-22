@@ -19,13 +19,13 @@ include(ROOT_PATH . 'inc/header.php');
            return $line_of_text;
     }
 
-    $csvFile = "../uploads/merchants/" . $_GET['filename'];
+    $csvFile = "../uploads/devices/" . $_GET['filename'];
 
     $csv = readCSV($csvFile);
 
     $db->beginTransaction();
 
-    $sql = $db->prepare('INSERT IGNORE INTO tbl_merchants(email, first_name, last_name, company) VALUES(:a, :b, :c, :d)');
+    $sql = $db->prepare('INSERT IGNORE INTO tbl_devices(device_id, device_model, device_firmware, device_status, batch_id) VALUES(:a, :b, :c, :d, :e)');
 
     foreach ($csv as $insert_row)
     {
@@ -33,6 +33,8 @@ include(ROOT_PATH . 'inc/header.php');
       $sql->bindValue(':b', $insert_row[1]);
       $sql->bindValue(':c', $insert_row[2]);
       $sql->bindValue(':d', $insert_row[3]);
+      $sql->bindValue(':e', $insert_row[4]);
+
       $sql->execute();
     }
 
@@ -53,7 +55,7 @@ include(ROOT_PATH . 'inc/header.php');
 
     <div class="wrapperpage"> 
 
-      <h1 class="h1pages">Upload Merchant's File</h1>
+      <h1 class="h1pages">Upload Devices's File</h1>
 
       <?php 
 
@@ -75,8 +77,8 @@ include(ROOT_PATH . 'inc/header.php');
                   <div class="fileUpload btn btn-primary">
                       <span>Upload</span>
                       <input id="uploadBtn" type="file" class="upload" name="file" />
-                      <input type="hidden" name="uploadpath" value="merchants/" />
-                      <input type="hidden" name="path" value="upload/upmerchant/index.php?filename=">
+                      <input type="hidden" name="uploadpath" value="devices/" />
+                      <input type="hidden" name="path" value="upload/updevice/index.php?filename=">
                   </div>
               </td>
           </tr>
