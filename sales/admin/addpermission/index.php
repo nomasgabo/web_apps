@@ -25,13 +25,7 @@ include(ROOT_PATH . 'inc/header.php'); ?>
 	        	var user = $("#select_users").val();
 	        	var type = "remove";
 	   
-	        	//$.ajax({
-	        		//data:{'page_id': page, 'user_id': user, 'type': 'remove'},
-	        	//	type: 'POST',
-	        //		url: 'update_perimissions.php'
-	       // 	});
-
-	    		$.post('update_permissions.php',{'page_id': page, 'user_id': user, 'type': type}).done(function( data){
+	    		$.post('update_permissions.php',{'page_id': page, 'user_id': user, 'type': type}).done(function(data){
 	    			alert(data);
 	    		});
 	    			
@@ -43,15 +37,9 @@ include(ROOT_PATH . 'inc/header.php'); ?>
 	        cancel: ".disabledItem",
 	        items: "li:not(.disabledItem)",
 	        receive: function(event,ui){
+	        	var type = "add"
 	        	var page = ui.item.attr('value'); 
 	        	var user = $("#select_users").val();
-	        	var type = "add"
-	    	
-	        	//$.ajax({
-	        		//data:{'page_id': page, 'user_id': user, 'type': 'remove'},
-	        	//	type: 'POST',
-	        	//	url: 'update_perimissions.php'
-	        	//});
 
 	    		$.post('update_permissions.php',{'page_id': page, 'user_id': user, 'type': type}).done(function( data){
 	    			alert(data);
@@ -67,6 +55,8 @@ include(ROOT_PATH . 'inc/header.php'); ?>
 <div class="section page">
 
     <div class="wrapper">  	
+
+    <h1>Manage Permissions</h1>
 
 		<form id="users" method="post" action="show_permissions.php">
 

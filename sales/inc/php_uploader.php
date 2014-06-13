@@ -16,7 +16,7 @@ if (($_FILES["file"]["type"] == "text/csv") && ($_FILES["file"]["size"] < 200000
      $pathupload = ROOT_PATH . "upload/uploads/" . $_POST["uploadpath"] . "PayPal " . date("Y-m-d H:i:s");
 
      move_uploaded_file($_FILES["file"]["tmp_name"], $pathupload);
-     header ("location: " . BASE_URL . $_POST["path"] . "PayPal " . date("Y-m-d H:i:s"));
+     header ("location: " . BASE_URL . $_POST["path"] . $_FILES["file"]["name"]);
      exit;
     }
   }

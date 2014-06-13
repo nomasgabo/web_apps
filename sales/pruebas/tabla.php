@@ -58,6 +58,7 @@ include(ROOT_PATH . 'inc/header.php'); ?>
                 <tr>
                     <td><?php echo $row['page_id']; ?></td>
                     <td><?php echo $row['page_name']; ?></td>
+                    
                 </tr>
     <?php 
             } 
@@ -100,26 +101,29 @@ $("#user_id").change(function() {
   oTable = $('#table_id').dataTable(
   {
         
+        
         "aoColumnDefs": [ { 
             targets: [ 0 ],
             orderData: [ 0, 1 ],
-            "bVisible": false
+            "bVisible": false,
+            "bAutoWidth": false,
             },{
             targets: [-1],
-            bSortable: false}],
+            bSortable: false},
+            { "sWidth": "300px", "aTargets": [ 1 ] },
+            { "sWidth": "300px", "aTargets": [ 2 ] },
+            { "sWidth": "300px", "aTargets": [ 3 ] }],
         "scrollCollapse": true,
         "paging":         false,
         "searching": false,
-        "bInfo": false,
+        "bInfo": false
         }
     
     );
     
-    oTable.$('tr').click( function () {
+    oTable.$('td').click( function () {
     var sData = oTable.fnGetData( this,0 );
     alert( 'The cell clicked on had the value of '+sData );
-
-    $.post("ajax.php", {'action': sData});
 
   } );
 } );

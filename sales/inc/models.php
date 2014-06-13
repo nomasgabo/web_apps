@@ -27,6 +27,80 @@ function verify_user($user) {
         
 }
 
+function verify_email($email) {
+
+    require(ROOT_PATH . "inc/database.php");
+
+    try {
+        $results = $db -> prepare("SELECT email FROM tbl_emailvalidation WHERE email = ?");
+        $results -> bindparam(1,$email);
+        $results -> execute();
+    } catch(Exception $e){
+        echo "Data could not be retrieved  from the database.";
+        exit;
+    }
+
+    $exist = $results -> fetch(PDO::FETCH_ASSOC);
+
+    if($exist === false) {
+
+        return false;
+
+    } else {
+
+        return true; 
+        
+    }
+        
+}
+
+function verify_email_full($email) {
+
+    require(ROOT_PATH . "inc/database.php");
+
+    try {
+        $results = $db -> prepare("SELECT email FROM tbl_emailvalidation WHERE email = ? AND confirmed = 1");
+        $results -> bindparam(1,$email);
+        $results -> execute();
+    } catch(Exception $e){
+        echo "Data could not be retrieved  from the database.";
+        exit;
+    }
+
+    $exist = $results -> fetch(PDO::FETCH_ASSOC);
+
+    if($exist === false) {
+
+        return false;
+
+    } else {
+
+        return true; 
+        
+    }
+        
+}
+
+function verify_device($device) {
+
+    require(ROOT_PATH . "inc/database.php");
+
+    try {
+        $results = $db -> prepare("SELECT device_status FROM tbl_devices WHERE device_id = ?");
+        $results -> bindparam(1,$device);
+        $results -> execute();
+    } catch(Exception $e){
+        echo "Data could not be retrieved  from the database.";
+        exit;
+    }
+
+    $exist = $results -> fetch(PDO::FETCH_ASSOC);
+
+    return $exist["device_status"];
+
+}
+        
+
 function verify_payment($email) {
 
     require(ROOT_PATH . "inc/database.php");
@@ -108,7 +182,7 @@ function verify_batch($batch) {
         
 }
 
-function sign_in($user, $password) {
+function sign_in($user) {
 
     require(ROOT_PATH . "inc/database.php");
 
@@ -247,4 +321,52 @@ function get_menu_list($user){
     }
       
     return $menu;
+}
+
+function get_device_list($user){
+    require(ROOT_PATH . "inc/database.php");
+
+        try {
+
+            $result = $db -> prepare("SELECT device_id, device_model, device_firmware FROM tbl_devices WHERE user_id = ? AND device_status = 'assigned' ORDER BY device_id");
+            $result -> bindparam(1,$user);
+            $result -> execute();
+        } catch(Exception $e){
+            echo "Data could not be retrieved  from the database.";
+            exit;
+       }
+      
+    return $result;
+}
+
+function get_devicem_list($email){
+    require(ROOT_PATH . "inc/database.php");
+
+        try {
+
+            $result = $db -> prepare("SELECT device_id, device_model, device_firmware FROM tbl_devices WHERE email = ? AND device_status = 'delivered' ORDER BY device_id");
+            $result -> bindparam(1,$email);
+            $result -> execute();
+        } catch(Exception $e){
+            echo "Data could not be retrieved  from the database.";
+            exit;
+       }
+      
+    return $result;
+}
+
+function get_devices_by_user($user){
+    require(ROOT_PATH . "inc/database.php");
+
+        try {
+
+            $result = $db -> prepare("SELECT device_id FROM tbl_devices WHERE user_id = ? AND device_status = 'assigned' ORDER BY device_id");
+            $result -> bindparam(1,$user);
+            $result -> execute();
+        } catch(Exception $e){
+            echo "Data could not be retrieved  from the database.";
+            exit;
+       }
+      
+    return $result;
 }

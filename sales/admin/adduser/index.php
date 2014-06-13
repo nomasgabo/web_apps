@@ -27,7 +27,7 @@ include(ROOT_PATH . 'inc/header.php'); ?>
 
                 ?>
 
-                <form method="post" action='<?php echo BASE_URL; ?>/admin/adduser/adduser.php'>
+                <form method="post" action='<?php echo BASE_URL; ?>admin/adduser/adduser.php'>
 
                     <table>
                         <tr>

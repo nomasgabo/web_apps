@@ -861,3 +861,33 @@ form input[type="submit"] {
 .btn-primary .badge {
   color: #428bca;
   background-color: #fff;
+}
+
+.tb_display{
+    margin: 50px auto;
+    border: 2px solid #D8D8D8
+}
+
+.tb_display th{
+    color: #FF8655;
+    background-color: #f4f3f2;
+    border-bottom: 3px solid #D8D8D8
+}
+
+.tb_display td{
+
+    text-align: center;
+    border-bottom: 1px solid #D8D8D8
+}
+
+.danger {
+  color: #FF0000;
+  width: 18px;
+  height: 18px;
+  line-height: 20px;
+  float: right;
+  border-radius: 2px;
+  text-align: center;
+  text-decoration: none;
+  
+}
